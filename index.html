@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PPDB SMAN 1 Belitang - PRIMA</title>
+    <meta name="description" content="Aplikasi Pendaftaran Peserta Didik Baru (PPDB) SMA Negeri 1 Belitang.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="logo-circle">
+                <i class="ri-graduation-cap-fill"></i>
+            </div>
+            <h1>SMAN 1 BELITANG</h1>
+            <p>SMA PRIMA</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <div id="app-container" class="app-container hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <i class="ri-school-fill text-primary"></i>
+                <div class="header-text">
+                    <h2>PPDB Online</h2>
+                    <p>SMAN 1 Belitang</p>
+                </div>
+            </div>
+            <button class="icon-btn" id="btn-menu">
+                <i class="ri-menu-4-line"></i>
+            </button>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            <!-- View: Home -->
+            <section id="view-home" class="view active">
+                <div class="hero-section glass-card">
+                    <span class="badge">Tahun Ajaran Baru</span>
+                    <h2>Penerimaan Peserta Didik Baru</h2>
+                    <p>Wujudkan mimpimu bersama SMA PRIMA berpacu meraih prestasi luhur budi pekerti.</p>
+                    <button class="btn btn-primary btn-block mt-4" onclick="app.navigate('register-step-1')">
+                        <i class="ri-user-add-line"></i> Daftar Sekarang
+                    </button>
+                </div>
+
+                <div class="stats-row mt-4">
+                    <div class="stat-card">
+                        <i class="ri-calendar-event-line text-primary"></i>
+                        <p class="stat-label">Batas Waktu</p>
+                        <h4 class="stat-value">15 Juli</h4>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-file-list-3-line text-success"></i>
+                        <p class="stat-label">Pendaftar</p>
+                        <h4 class="stat-value">452</h4>
+                    </div>
+                </div>
+
+                <div class="section-title mt-6">
+                    <h3>Menu Utama</h3>
+                </div>
+                <div class="menu-grid mt-3">
+                    <div class="menu-item glass-card" onclick="app.navigate('info')">
+                        <div class="menu-icon bg-blue-light"><i class="ri-information-line text-primary"></i></div>
+                        <span>Info Syarat</span>
+                    </div>
+                    <div class="menu-item glass-card" onclick="app.navigate('status')">
+                        <div class="menu-icon bg-green-light"><i class="ri-search-eye-line text-success"></i></div>
+                        <span>Cek Status</span>
+                    </div>
+                    <div class="menu-item glass-card" onclick="app.navigate('schedule')">
+                        <div class="menu-icon bg-red-light"><i class="ri-calendar-todo-line text-danger"></i></div>
+                        <span>Jadwal</span>
+                    </div>
+                    <div class="menu-item glass-card" onclick="app.navigate('contact')">
+                        <div class="menu-icon bg-gray-light"><i class="ri-customer-service-2-line text-gray"></i></div>
+                        <span>Bantuan</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View: Register Step 1 (Bio Data) -->
+            <section id="view-register-step-1" class="view hidden">
+                <div class="page-header">
+                    <button class="btn-back" onclick="app.navigate('home')"><i class="ri-arrow-left-s-line"></i></button>
+                    <h3>Data Siswa</h3>
+                </div>
+                
+                <div class="progress-bar-container mt-4">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 33%;"></div>
+                    </div>
+                    <p class="text-xs text-center mt-2 text-gray">Langkah 1 dari 3: Biodata Diri</p>
+                </div>
+
+                <form id="form-step-1" class="form-container mt-6">
+                    <div class="form-group">
+                        <label for="nisn">NISN</label>
+                        <div class="input-with-icon">
+                            <i class="ri-id-card-line"></i>
+                            <input type="number" id="nisn" placeholder="Masukkan 10 digit NISN" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname">Nama Lengkap</label>
+                        <div class="input-with-icon">
+                            <i class="ri-user-line"></i>
+                            <input type="text" id="fullname" placeholder="Sesuai Ijazah/KK" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pob">Tempat Lahir</label>
+                        <div class="input-with-icon">
+                            <i class="ri-map-pin-line"></i>
+                            <input type="text" id="pob" placeholder="Contoh: Belitang" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Tanggal Lahir</label>
+                        <div class="input-with-icon">
+                            <i class="ri-calendar-line"></i>
+                            <input type="date" id="dob" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Jenis Kelamin</label>
+                        <select id="gender" required>
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="school">Asal Sekolah (SMP/MTs)</label>
+                        <div class="input-with-icon">
+                            <i class="ri-building-line"></i>
+                            <input type="text" id="school" placeholder="Contoh: SMPN 1 Belitang" required>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary btn-block mt-6" onclick="app.submitStep1()">
+                        Selanjutnya <i class="ri-arrow-right-line"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- View: Info & Syarat -->
+            <section id="view-info" class="view hidden">
+                <div class="page-header">
+                    <button class="btn-back" onclick="app.navigate('home')"><i class="ri-arrow-left-s-line"></i></button>
+                    <h3>Informasi & Syarat</h3>
+                </div>
+
+                <div class="info-card glass-card mt-4">
+                    <h4><i class="ri-file-text-line text-primary"></i> Persyaratan Umum</h4>
+                    <ul class="custom-list mt-3">
+                        <li>Lulus SMP/MTs sederajat.</li>
+                        <li>Berusia maksimal 21 tahun pada saat pendaftaran.</li>
+                        <li>Memiliki Kartu Keluarga (KK) minimal 1 tahun.</li>
+                        <li>Tidak sedang terlibat tindak pidana/narkoba.</li>
+                    </ul>
+                </div>
+
+                <div class="info-card glass-card mt-4">
+                    <h4><i class="ri-folder-open-line text-success"></i> Dokumen Disiapkan</h4>
+                    <ul class="custom-list mt-3">
+                        <li>Scan/Foto KK & Akta Kelahiran asli.</li>
+                        <li>Scan/Foto Ijazah/SKL SMP/MTs.</li>
+                        <li>Pas foto 3x4 (Latar Merah).</li>
+                        <li>Piagam prestasi (khusus jalur prestasi).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- View: Register Step 2 (Parent Data) -->
+            <section id="view-register-step-2" class="view hidden">
+                <div class="page-header">
+                    <button class="btn-back" onclick="app.navigate('register-step-1')"><i class="ri-arrow-left-s-line"></i></button>
+                    <h3>Data Orang Tua</h3>
+                </div>
+                
+                <div class="progress-bar-container mt-4">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 66%;"></div>
+                    </div>
+                    <p class="text-xs text-center mt-2 text-gray">Langkah 2 dari 3: Data Orang Tua</p>
+                </div>
+
+                <form id="form-step-2" class="form-container mt-6">
+                    <div class="form-group">
+                        <label for="father-name">Nama Ayah</label>
+                        <div class="input-with-icon">
+                            <i class="ri-parent-line"></i>
+                            <input type="text" id="father-name" placeholder="Nama Lengkap Ayah" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="father-job">Pekerjaan Ayah</label>
+                        <select id="father-job" required>
+                            <option value="">Pilih Pekerjaan</option>
+                            <option value="PNS">PNS/TNI/POLRI</option>
+                            <option value="Swasta">Karyawan Swasta</option>
+                            <option value="Wiraswasta">Wiraswasta/Pedagang</option>
+                            <option value="Petani">Petani/Buruh</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mother-name">Nama Ibu</label>
+                        <div class="input-with-icon">
+                            <i class="ri-parent-line"></i>
+                            <input type="text" id="mother-name" placeholder="Nama Lengkap Ibu" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="parent-phone">No. HP/WhatsApp Orang Tua</label>
+                        <div class="input-with-icon">
+                            <i class="ri-phone-line"></i>
+                            <input type="tel" id="parent-phone" placeholder="Contoh: 081234567890" required>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary btn-block mt-6" onclick="app.submitStep2()">
+                        Selanjutnya <i class="ri-arrow-right-line"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- View: Register Step 3 (Upload Documents) -->
+            <section id="view-register-step-3" class="view hidden">
+                <div class="page-header">
+                    <button class="btn-back" onclick="app.navigate('register-step-2')"><i class="ri-arrow-left-s-line"></i></button>
+                    <h3>Upload Dokumen</h3>
+                </div>
+                
+                <div class="progress-bar-container mt-4">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                    <p class="text-xs text-center mt-2 text-gray">Langkah 3 dari 3: Upload Berkas</p>
+                </div>
+
+                <form id="form-step-3" class="form-container mt-6">
+                    <div class="upload-card">
+                        <div class="upload-icon"><i class="ri-profile-line"></i></div>
+                        <div class="upload-details">
+                            <h5>Kartu Keluarga (KK)</h5>
+                            <p>Format JPG/PNG/PDF, Max 2MB</p>
+                        </div>
+                        <label class="btn-upload">
+                            Pilih <input type="file" accept=".jpg,.jpeg,.png,.pdf" class="hidden-input">
+                        </label>
+                    </div>
+
+                    <div class="upload-card mt-3">
+                        <div class="upload-icon"><i class="ri-article-line"></i></div>
+                        <div class="upload-details">
+                            <h5>Ijazah/SKL</h5>
+                            <p>Format JPG/PNG/PDF, Max 2MB</p>
+                        </div>
+                        <label class="btn-upload">
+                            Pilih <input type="file" accept=".jpg,.jpeg,.png,.pdf" class="hidden-input">
+                        </label>
+                    </div>
+
+                    <div class="upload-card mt-3">
+                        <div class="upload-icon"><i class="ri-image-line"></i></div>
+                        <div class="upload-details">
+                            <h5>Pas Foto 3x4</h5>
+                            <p>Latar Merah, Format JPG/PNG</p>
+                        </div>
+                        <label class="btn-upload">
+                            Pilih <input type="file" accept=".jpg,.jpeg,.png" class="hidden-input">
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="btn btn-success btn-block mt-6" onclick="app.submitStep3()">
+                        <i class="ri-check-double-line"></i> Selesaikan Pendaftaran
+                    </button>
+                </form>
+            </section>
+
+            <!-- View: Status -->
+            <section id="view-status" class="view hidden">
+                <div class="page-header">
+                    <button class="btn-back" onclick="app.navigate('home')"><i class="ri-arrow-left-s-line"></i></button>
+                    <h3>Cek Status</h3>
+                </div>
+
+                <div class="search-box glass-card mt-4">
+                    <p class="text-sm mb-3">Masukkan NISN untuk melihat status pendaftaran Anda.</p>
+                    <div class="input-with-btn">
+                        <input type="number" id="search-nisn" placeholder="Cari NISN...">
+                        <button class="btn btn-primary" onclick="app.checkStatus()">Cari</button>
+                    </div>
+                </div>
+
+                <div id="status-result" class="status-result glass-card mt-4 hidden">
+                    <div class="status-header">
+                        <div class="avatar-circle">
+                            <i class="ri-user-smile-line"></i>
+                        </div>
+                        <div class="student-info">
+                            <h4 id="res-name">Ahmad Budi</h4>
+                            <p id="res-nisn">1234567890</p>
+                        </div>
+                    </div>
+                    <div class="status-body mt-4">
+                        <div class="status-badge process">
+                            <i class="ri-time-line"></i> Sedang Diproses
+                        </div>
+                        <p class="text-sm text-center mt-3 text-gray">Berkas Anda sedang diverifikasi oleh panitia. Silakan cek kembali nanti.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View: Schedule -->
+            <section id="view-schedule" class="view hidden">
+                <div class="page-header">
+                    <button class="btn-back" onclick="app.navigate('home')"><i class="ri-arrow-left-s-line"></i></button>
+                    <h3>Jadwal PPDB</h3>
+                </div>
+
+                <div class="timeline mt-5">
+                    <div class="timeline-item active">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date">1 - 15 Juli 2026</span>
+                            <h4>Pendaftaran Online</h4>
+                            <p>Pengisian formulir dan upload berkas melalui aplikasi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date">16 - 18 Juli 2026</span>
+                            <h4>Verifikasi Berkas</h4>
+                            <p>Proses pengecekan berkas oleh panitia SMAN 1 Belitang.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date">20 Juli 2026</span>
+                            <h4>Pengumuman Kelulusan</h4>
+                            <p>Pengumuman hasil seleksi dapat dilihat melalui aplikasi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date">21 - 23 Juli 2026</span>
+                            <h4>Daftar Ulang</h4>
+                            <p>Lapor diri dan penyerahan berkas fisik di sekolah.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View: Contact / Bantuan -->
+            <section id="view-contact" class="view hidden">
+                <div class="page-header">
+                    <button class="btn-back" onclick="app.navigate('home')"><i class="ri-arrow-left-s-line"></i></button>
+                    <h3>Pusat Bantuan</h3>
+                </div>
+
+                <div class="contact-cards mt-4">
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon bg-green-light"><i class="ri-whatsapp-line text-success"></i></div>
+                        <div class="contact-info">
+                            <h4>WhatsApp Panitia</h4>
+                            <p>0812-3456-7890</p>
+                        </div>
+                        <button class="icon-btn"><i class="ri-arrow-right-up-line"></i></button>
+                    </div>
+                    <div class="contact-card glass-card mt-3">
+                        <div class="contact-icon bg-blue-light"><i class="ri-map-pin-line text-primary"></i></div>
+                        <div class="contact-info">
+                            <h4>Lokasi Sekolah</h4>
+                            <p>Jl. Mawar No. 1, Belitang</p>
+                        </div>
+                        <button class="icon-btn"><i class="ri-arrow-right-up-line"></i></button>
+                    </div>
+                </div>
+
+                <div class="section-title mt-6">
+                    <h3>FAQ (Pertanyaan Umum)</h3>
+                </div>
+                <div class="faq-list mt-3">
+                    <div class="faq-item glass-card" onclick="app.toggleFaq(this)">
+                        <div class="faq-question">
+                            <h4>Apakah pendaftaran dipungut biaya?</h4>
+                            <i class="ri-add-line"></i>
+                        </div>
+                        <div class="faq-answer hidden">
+                            <p class="mt-2 text-sm text-gray">Tidak. Seluruh proses pendaftaran PPDB SMAN 1 Belitang gratis tanpa dipungut biaya apapun.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item glass-card mt-3" onclick="app.toggleFaq(this)">
+                        <div class="faq-question">
+                            <h4>Bagaimana jika saya salah input data?</h4>
+                            <i class="ri-add-line"></i>
+                        </div>
+                        <div class="faq-answer hidden">
+                            <p class="mt-2 text-sm text-gray">Anda dapat menghubungi panitia melalui WhatsApp untuk permohonan pembatalan, lalu mendaftar ulang.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active" onclick="app.navigate('home')">
+                <i class="ri-home-5-line"></i>
+                <span>Beranda</span>
+            </a>
+            <a href="#" class="nav-item" onclick="app.navigate('status')">
+                <i class="ri-search-eye-line"></i>
+                <span>Status</span>
+            </a>
+            <a href="#" class="nav-item" onclick="app.navigate('contact')">
+                <i class="ri-user-smile-line"></i>
+                <span>Bantuan</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
